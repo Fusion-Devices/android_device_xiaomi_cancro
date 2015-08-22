@@ -50,7 +50,32 @@ BOARD_KERNEL_PAGESIZE    := 2048
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000 --tags_offset 0x01E00000
 TARGET_KERNEL_SOURCE := kernel/xiaomi/cancro
 TARGET_KERNEL_ARCH := arm
-TARGET_KERNEL_CONFIG := cyanogen_cancro_defconfig
+TARGET_KERNEL_CONFIG := fusion_cancro_defconfig
+
+# Fusion Optimizations
+FUSION_OPT=true
+FUSION_O3 := true
+FUSION_STRICT := true
+FUSION_OFAST := true
+FUSION_KRAIT := true
+FUSION_GRAPHITE := true
+FUSION_PIPE := true
+FUSION_ENABLE_GCCONLY := true
+FLOOP_NEST_OPTIMIZE := true
+FUSION_FFAST_MATH := true
+TARGET_FUSION_ROM := 4.9
+TARGET_FUSION_KERNEL := 4.9-sm
+
+# Default.prop overrides to get adb working at boot
+ADDITIONAL_DEFAULT_PROPERTIES += \
+              ro.secure=0 \
+              ro.adb.secure=0 \
+
+# TWRP Build Flags
+DEVICE_RESOLUTION := 1080x1920
+
+# SaberMod
+-include vendor/fusion/config/sm.mk
 
 # Vendor Init
 TARGET_UNIFIED_DEVICE := true
